@@ -80,7 +80,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            background: linear-gradient(rgba(135, 206, 235, 0.8), rgba(70, 130, 180, 0.8)), 
+                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
             padding: 120px 0 80px;
             text-align: center;
@@ -157,12 +158,30 @@
             margin-top: 2rem;
         }
 
+        .card img,
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 1rem;
+        }
+
         .card {
             background: white;
-            padding: 2rem;
+            padding: 0;
             border-radius: 8px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .card > *:not(img):not(.card-image) {
+            padding: 0 2rem;
+        }
+
+        .card > *:last-child {
+            padding-bottom: 2rem;
         }
 
         .card:hover {
@@ -173,6 +192,7 @@
             color: #87CEEB;
             margin-bottom: 1rem;
             font-size: 1.3rem;
+            padding-top: 1rem;
         }
 
         .card p {
@@ -338,14 +358,17 @@
                 
                 <div class="grid">
                     <div class="card">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Visi Kami" class="card-image">
                         <h3>🎯 Visi Kami</h3>
                         <p>Menjadi jembatan yang menghubungkan potensi siswa dengan peluang masa depan yang cerah dan berkelanjutan.</p>
                     </div>
                     <div class="card">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Misi Kami" class="card-image">
                         <h3>🚀 Misi Kami</h3>
                         <p>Memberikan bimbingan karir yang komprehensif dan inklusif untuk membantu setiap siswa menemukan jalan menuju kesuksesan.</p>
                     </div>
                     <div class="card">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Nilai Kami" class="card-image">
                         <h3>💡 Nilai Kami</h3>
                         <p>Integritas, inklusivitas, dan inovasi dalam setiap layanan yang kami berikan untuk masa depan generasi penerus.</p>
                     </div>
@@ -359,6 +382,7 @@
                 
                 <div class="grid">
                     <div class="card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Identifikasi Potensi" class="card-image">
                         <h3>🔍 Identifikasi Potensi Diri</h3>
                         <ul class="list">
                             <li>Tes minat dan bakat</li>
@@ -368,6 +392,7 @@
                         </ul>
                     </div>
                     <div class="card">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Bimbingan Akademik" class="card-image">
                         <h3>📚 Bimbingan Akademik</h3>
                         <ul class="list">
                             <li>Pemilihan jurusan kuliah</li>
@@ -377,6 +402,7 @@
                         </ul>
                     </div>
                     <div class="card">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80" alt="Persiapan Karir" class="card-image">
                         <h3>💼 Persiapan Karir</h3>
                         <ul class="list">
                             <li>Workshop keterampilan kerja</li>
