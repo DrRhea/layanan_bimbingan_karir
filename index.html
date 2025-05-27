@@ -318,6 +318,39 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Program Section */
+        .program-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .program-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-btn {
+            background: #87CEEB;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .program-btn:hover {
+            background: #4682B4;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -391,26 +424,6 @@
                             <li>Konseling individual</li>
                         </ul>
                     </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Bimbingan Akademik" class="card-image">
-                        <h3>📚 Bimbingan Akademik</h3>
-                        <ul class="list">
-                            <li>Pemilihan jurusan kuliah</li>
-                            <li>Informasi beasiswa</li>
-                            <li>Persiapan ujian masuk</li>
-                            <li>Strategi belajar efektif</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80" alt="Persiapan Karir" class="card-image">
-                        <h3>💼 Persiapan Karir</h3>
-                        <ul class="list">
-                            <li>Workshop keterampilan kerja</li>
-                            <li>Simulasi wawancara</li>
-                            <li>Penyusunan CV & portfolio</li>
-                            <li>Networking & magang</li>
-                        </ul>
-                    </div>
                 </div>
             </section>
 
@@ -418,10 +431,11 @@
             <section class="section fade-in">
                 <h2>Program Unggulan</h2>
                 <div class="grid">
-                    <div class="card">
-                        <h3>📱 Konseling Online</h3>
+                    <div class="card program-card">
+                        <div class="program-icon">📱</div>
+                        <h3>Konseling Online</h3>
                         <p>Sesi konseling melalui platform digital yang memudahkan akses dari mana saja dan kapan saja.</p>
-                        <a href="#kontak" class="btn">Daftar Sekarang</a>
+                        <a href="https://wa.me/6288802503036?text=Halo,%20saya%20tertarik%20dengan%20program%20Konseling%20Online.%20Mohon%20informasi%20lebih%20lanjut." class="btn program-btn" target="_blank">Daftar Sekarang</a>
                     </div>
                 </div>
             </section>
