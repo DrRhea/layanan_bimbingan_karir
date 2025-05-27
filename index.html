@@ -3,600 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konsultasi Jurusan Kuliah - Temukan Jurusan Impianmu</title>
+    <title>Layanan Karir SMA - Mengenal Minat & Bakat untuk Masa Depan Cerah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#87CEEB',
+                        'primary-dark': '#4682B4',
+                        'primary-light': '#e6f3ff'
+                    },
+                    fontFamily: {
+                        sans: ['Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-        }
-
-        /* Navbar */
-        .navbar {
-            background: #87CEEB;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-menu li {
-            margin-left: 2rem;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .nav-menu a:hover {
-            opacity: 0.8;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(135, 206, 235, 0.8), rgba(70, 130, 180, 0.8)), 
-                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
-            color: white;
-            padding: 120px 0 80px;
-            text-align: center;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            background: #87CEEB;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: #4682B4;
-            transform: translateY(-2px);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .content {
-            padding: 60px 0;
-        }
-
-        .section {
-            margin-bottom: 60px;
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #666;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card img,
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-            margin-bottom: 1rem;
-        }
-
-        .card {
-            background: white;
-            padding: 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            overflow: hidden;
-        }
-
-        .card > *:not(img):not(.card-image) {
-            padding: 0 2rem;
-        }
-
-        .card > *:last-child {
-            padding-bottom: 2rem;
-        }
-
-        .card:hover,
-        .card-simple:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3,
-        .card-simple h3 {
-            color: #87CEEB;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            padding-top: 1rem;
-        }
-
-        .card-simple h3 {
-            padding-top: 0;
-        }
-
-        .card p,
-        .card-simple p {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            color: #666;
-        }
-
-        .list li:before {
-            content: "✓";
-            color: #87CEEB;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .card-simple {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: #87CEEB;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-text {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #f8f9fa;
-            color: #333;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .contact h2 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .contact p {
-            margin-bottom: 2rem;
-            color: #666;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: grid;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .contact-form textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #87CEEB;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-menu li {
-                margin: 0.5rem 0;
-                text-align: center;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section h2 {
-                font-size: 1.5rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .form-group {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding: 100px 0 60px;
-            }
-
-            .content {
-                padding: 40px 0;
-            }
-
-            .section {
-                margin-bottom: 40px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .card,
-            .card-simple {
-                margin: 0 0.5rem;
-            }
-
-            .container {
-                padding: 0 0.5rem;
-            }
-
-            .nav-container {
-                padding: 0 0.5rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
-
-        /* Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s;
         }
-
         .fade-in.active {
             opacity: 1;
             transform: translateY(0);
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans" x-data="{ mobileMenuOpen: false, showBackToTop: false }" @scroll.window="showBackToTop = (window.pageYOffset > 300)">
+    
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Layanan Bimbingan Karir</div>
-            <ul class="nav-menu">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#tentang">Tentang</a></li>
-                <li><a href="#layanan">Layanan</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+    <nav class="bg-primary shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="text-white text-2xl font-bold">
+                    KarirKu
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-gray-200 transition-colors font-medium">Beranda</a>
+                    <a href="#minat-bakat" class="text-white hover:text-gray-200 transition-colors font-medium">Minat & Bakat</a>
+                    <a href="#layanan" class="text-white hover:text-gray-200 transition-colors font-medium">Layanan</a>
+                    <a href="#kontak" class="text-white hover:text-gray-200 transition-colors font-medium">Kontak</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenuOpen" x-transition class="md:hidden bg-primary pb-4">
+                <a href="#home" @click="mobileMenuOpen = false" class="block text-white hover:text-gray-200 py-2 px-4">Beranda</a>
+                <a href="#minat-bakat" @click="mobileMenuOpen = false" class="block text-white hover:text-gray-200 py-2 px-4">Minat & Bakat</a>
+                <a href="#layanan" @click="mobileMenuOpen = false" class="block text-white hover:text-gray-200 py-2 px-4">Layanan</a>
+                <a href="#kontak" @click="mobileMenuOpen = false" class="block text-white hover:text-gray-200 py-2 px-4">Kontak</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <h1>Bingung Pilih Jurusan Kuliah?</h1>
-            <p>Konsultasi dengan ahli untuk menemukan jurusan yang tepat sesuai minat, bakat, dan passion kamu!</p>
-            <a href="#layanan" class="btn">Konsultasi Sekarang</a>
+    <section id="home" class="relative bg-gradient-to-r from-primary to-primary-dark text-white pt-24 pb-20">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="relative max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-light mb-6">Layanan Karir untuk Siswa SMA Kelas 12</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Mengenal Minat & Bakat untuk Membuka Akses Menuju Masa Depan Cerah</p>
+            <a href="#minat-bakat" class="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-medium transition-all transform hover:-translate-y-1">
+                Mulai Baca
+            </a>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <h2>Mengapa Pilih Jurusan Itu Penting?</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">70%</div>
-                    <div class="stat-text">Mahasiswa salah pilih jurusan</div>
+    <!-- Blog Content -->
+    <article class="max-w-4xl mx-auto bg-white shadow-2xl my-20 mx-4 rounded-xl overflow-hidden" x-data x-intersect="$el.classList.add('fade-in', 'active')">
+        <!-- Blog Header -->
+        <header class="text-center px-8 py-12">
+            <h1 class="text-3xl md:text-5xl font-light text-gray-800 mb-4">Mengenal Minat & Bakat: Kunci Sukses Memilih Karir</h1>
+            <div class="text-gray-600 text-lg">
+                Dipublikasikan pada 27 Mei 2025 • Bacaan 8 menit
+            </div>
+        </header>
+
+        <!-- Blog Content -->
+        <div class="px-8 md:px-12 pb-12">
+            <div class="prose prose-lg max-w-none">
+                <p class="text-xl leading-relaxed mb-6 text-justify">
+                    Sebagai siswa SMA kelas 12, kamu pasti sedang menghadapi dilema besar: "Kuliah jurusan apa ya?" atau "Setelah lulus mau kerja apa?". Pertanyaan-pertanyaan ini wajar banget kok! Banyak siswa yang merasa bingung karena belum mengenal minat dan bakatnya dengan baik.
+                </p>
+
+                <p class="text-xl leading-relaxed mb-8 text-justify">
+                    Di sinilah pentingnya layanan karir untuk membantu kamu menemukan jalan yang tepat. Mari kita bahas lebih dalam tentang minat, bakat, dan bagaimana layanan karir bisa membantumu!
+                </p>
+
+                <h2 id="minat-bakat" class="text-3xl md:text-4xl text-primary font-normal mt-12 mb-6">🎯 Apa Itu Minat dan Bakat?</h2>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-4">Pengertian Minat</h3>
+                <p class="leading-relaxed mb-6 text-justify">
+                    Minat adalah kecenderungan atau ketertarikan seseorang terhadap suatu aktivitas, bidang, atau hal tertentu. Minat bersifat subjektif dan bisa berkembang seiring waktu. Misalnya, kamu mungkin tertarik dengan dunia teknologi, seni, olahraga, atau bisnis.
+                </p>
+
+                <div class="bg-primary-light p-8 border-l-4 border-primary rounded-lg my-8">
+                    <h4 class="text-xl text-primary-dark font-semibold mb-4">💡 Contoh Minat:</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Minat terhadap teknologi dan komputer</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Minat terhadap seni dan kreativitas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Minat terhadap ilmu pengetahuan dan penelitian</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Minat terhadap bisnis dan kewirausahaan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Minat terhadap pelayanan sosial dan membantu orang lain</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-text">Jurusan kuliah di Indonesia</div>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-4">Pengertian Bakat</h3>
+                <p class="leading-relaxed mb-6 text-justify">
+                    Bakat adalah kemampuan alami atau potensi yang dimiliki seseorang untuk menguasai suatu keterampilan atau bidang tertentu dengan relatif mudah. Bakat biasanya sudah ada sejak lahir, meskipun perlu diasah dan dikembangkan.
+                </p>
+
+                <div class="bg-primary-light p-8 border-l-4 border-primary rounded-lg my-8">
+                    <h4 class="text-xl text-primary-dark font-semibold mb-4">🌟 Contoh Bakat:</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Bakat analitis (mudah memecahkan masalah logika)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Bakat artistik (mudah menggambar, menyanyi, atau bermusik)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Bakat verbal (mudah berbicara dan menulis)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Bakat numerik (mudah berhitung dan matematika)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">•</span>
+                            <span>Bakat interpersonal (mudah bergaul dan memimpin)</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">85%</div>
-                    <div class="stat-text">Siswa bingung pilih jurusan</div>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-4">Perbedaan Minat dan Bakat</h3>
+                <p class="leading-relaxed mb-8 text-justify">
+                    Penting untuk memahami bahwa minat dan bakat itu berbeda. Kamu bisa saja berminat pada sesuatu tapi tidak berbakat di bidang itu, atau sebaliknya. Idealnya, karir yang tepat adalah perpaduan antara minat dan bakat yang kamu miliki.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-colors hover:transform hover:-translate-y-2 transition-all">
+                        <div class="text-4xl mb-4">❤️</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">MINAT</div>
+                        <p class="text-gray-600">Apa yang kamu suka dan tertarik untuk lakukan</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-colors hover:transform hover:-translate-y-2 transition-all">
+                        <div class="text-4xl mb-4">⭐</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">BAKAT</div>
+                        <p class="text-gray-600">Apa yang kamu secara alami mudah dan cepat pelajari</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-colors hover:transform hover:-translate-y-2 transition-all">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">KARIR IDEAL</div>
+                        <p class="text-gray-600">Perpaduan sempurna antara minat dan bakat</p>
+                    </div>
                 </div>
+
+                <h2 id="layanan" class="text-3xl md:text-4xl text-primary font-normal mt-16 mb-6">🚀 Layanan Karir untuk Siswa SMA Kelas 12</h2>
+
+                <p class="leading-relaxed mb-6 text-justify">
+                    Layanan karir adalah program bimbingan yang dirancang khusus untuk membantu siswa mengenali potensi diri, mengeksplorasi pilihan karir, dan merencanakan masa depan. Untuk siswa SMA kelas 12, layanan ini sangat penting karena kalian berada di titik transisi menuju pendidikan tinggi atau dunia kerja.
+                </p>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-4">Mengapa Layanan Karir Penting?</h3>
+                <ol class="space-y-4 mb-8">
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">1</span>
+                        <div>
+                            <strong>Mencegah Salah Pilih Jurusan:</strong> Data menunjukkan bahwa 70% mahasiswa merasa salah pilih jurusan. Layanan karir membantu kamu membuat keputusan yang tepat sejak awal.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">2</span>
+                        <div>
+                            <strong>Mengoptimalkan Potensi:</strong> Dengan mengenal minat dan bakat, kamu bisa fokus mengembangkan kelebihan yang dimiliki.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">3</span>
+                        <div>
+                            <strong>Persiapan Masa Depan:</strong> Memberikan gambaran jelas tentang prospek karir dan langkah-langkah yang perlu diambil.
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">4</span>
+                        <div>
+                            <strong>Meningkatkan Kepercayaan Diri:</strong> Ketika kamu tahu apa yang ingin dicapai, kepercayaan diri akan meningkat.
+                        </div>
+                    </li>
+                </ol>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-6">Jenis-Jenis Layanan Karir</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-all hover:transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4">🔍</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">Tes Minat & Bakat</div>
+                        <p class="text-gray-600 text-sm">Tes psikologi untuk mengidentifikasi minat dan bakat yang kamu miliki</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-all hover:transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4">💬</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">Konseling Individual</div>
+                        <p class="text-gray-600 text-sm">Sesi one-on-one dengan konselor berpengalaman</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-all hover:transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4">📚</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">Informasi Jurusan</div>
+                        <p class="text-gray-600 text-sm">Database lengkap tentang jurusan kuliah dan prospek karirnya</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-all hover:transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">Perencanaan Karir</div>
+                        <p class="text-gray-600 text-sm">Roadmap jelas untuk mencapai tujuan karir kamu</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-all hover:transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4">🏢</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">Info Dunia Kerja</div>
+                        <p class="text-gray-600 text-sm">Wawasan tentang tren industri dan peluang kerja</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl text-center border-2 border-gray-200 hover:border-primary transition-all hover:transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4">🎓</div>
+                        <div class="font-bold text-lg text-primary-dark mb-2">Persiapan PTN/PTS</div>
+                        <p class="text-gray-600 text-sm">Tips dan strategi untuk masuk perguruan tinggi impian</p>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-4">Proses Layanan Karir</h3>
+                <p class="leading-relaxed mb-4">Layanan karir biasanya mengikuti proses yang sistematis:</p>
+                <ol class="space-y-4 mb-8">
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">1</span>
+                        <div><strong>Assessment Awal:</strong> Tes minat, bakat, dan kepribadian</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">2</span>
+                        <div><strong>Analisis Hasil:</strong> Interpretasi hasil tes oleh konselor</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">3</span>
+                        <div><strong>Eksplorasi Pilihan:</strong> Mengenal berbagai opsi karir yang sesuai</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">4</span>
+                        <div><strong>Perencanaan:</strong> Menyusun langkah-langkah konkret</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-4 mt-1 flex-shrink-0">5</span>
+                        <div><strong>Evaluasi:</strong> Review dan penyesuaian rencana</div>
+                    </li>
+                </ol>
+
+                <h3 class="text-2xl text-primary-dark font-medium mt-8 mb-4">Manfaat Layanan Karir untuk Siswa Kelas 12</h3>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start">
+                        <span class="text-primary mr-3 text-xl">✓</span>
+                        <div><strong>Kejelasan Arah:</strong> Tidak lagi bingung mau pilih jurusan apa</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-3 text-xl">✓</span>
+                        <div><strong>Motivasi Belajar:</strong> Semangat belajar meningkat karena punya tujuan jelas</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-3 text-xl">✓</span>
+                        <div><strong>Persiapan Optimal:</strong> Bisa mempersiapkan diri dengan lebih baik</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-3 text-xl">✓</span>
+                        <div><strong>Kepercayaan Diri:</strong> Yakin dengan pilihan yang dibuat</div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-primary mr-3 text-xl">✓</span>
+                        <div><strong>Networking:</strong> Bertemu dengan teman-teman yang punya tujuan serupa</div>
+                    </li>
+                </ul>
+
+                <h2 class="text-3xl md:text-4xl text-primary font-normal mt-16 mb-6">💡 Tips Mengenali Minat dan Bakat Sendiri</h2>
+                <p class="leading-relaxed mb-6 text-justify">
+                    Sebelum mengikuti layanan karir formal, kamu juga bisa mulai mengenali minat dan bakat dengan cara sederhana:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+                    <div class="bg-primary-light p-8 border-l-4 border-primary rounded-lg">
+                        <h4 class="text-xl text-primary-dark font-semibold mb-4">🔍 Cara Mengenali Minat:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Perhatikan aktivitas apa yang membuatmu excited</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Lihat mata pelajaran mana yang paling kamu sukai</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Amati kegiatan apa yang bisa membuatmu lupa waktu</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Tanyakan pada diri sendiri: "Kalau punya waktu bebas, aku mau ngapain?"</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-primary-light p-8 border-l-4 border-primary rounded-lg">
+                        <h4 class="text-xl text-primary-dark font-semibold mb-4">⭐ Cara Mengenali Bakat:</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Lihat hal apa yang mudah kamu pelajari</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Perhatikan di bidang mana kamu sering dipuji orang lain</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Amati kegiatan apa yang hasilnya selalu memuaskan</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-primary mr-2">•</span>
+                                <span>Tanyakan feedback dari guru, orang tua, dan teman</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl text-primary font-normal mt-16 mb-6">🎯 Memadukan Minat dan Bakat dalam Pilihan Karir</h2>
+                <p class="leading-relaxed mb-6 text-justify">
+                    Karir yang ideal adalah yang memadukan minat dan bakat. Bayangkan jika kamu bekerja di bidang yang kamu sukai DAN kamu jago. Pasti menyenangkan sekali, kan?
+                </p>
+
+                <p class="leading-relaxed mb-8 text-justify">
+                    Misalnya, jika kamu berminat di teknologi dan berbakat dalam problem solving, karir di bidang software engineering atau data science bisa jadi pilihan tepat. Atau jika kamu berminat di bidang sosial dan berbakat berkomunikasi, karir di bidang psikologi atau public relations mungkin cocok.
+                </p>
+
+                <h2 class="text-3xl md:text-4xl text-primary font-normal mt-16 mb-6">📈 Masa Depan yang Cerah Menanti</h2>
+                <p class="leading-relaxed mb-6 text-justify">
+                    Ingat, memilih karir bukan keputusan final. Karir itu journey, bukan destination. Yang penting adalah kamu memulai dengan fondasi yang kuat: mengenal diri sendiri dengan baik.
+                </p>
+
+                <p class="leading-relaxed mb-6 text-justify">
+                    Layanan karir ada untuk membantu kamu menemukan starting point yang tepat. Dengan bimbingan yang professional dan alat assessment yang valid, kamu bisa membuat keputusan yang lebih informed dan confident.
+                </p>
+
+                <p class="leading-relaxed mb-12 text-justify font-medium text-lg">
+                    Jangan biarkan masa depan cerahmu tertunda karena kebingungan. Ambil langkah pertama hari ini!
+                </p>
             </div>
         </div>
-    </section>
 
-    <!-- Main Content -->
-    <main class="content">
-        <div class="container">
-            <!-- Tentang Section -->
-            <section id="tentang" class="section fade-in">
-                <h2>Kenapa Harus Konsultasi Jurusan?</h2>
-                <p>Memilih jurusan kuliah adalah keputusan penting yang akan menentukan masa depan kamu. Jangan sampai salah pilih dan menyesal di kemudian hari!</p>
-                
-                <div class="grid">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kenali Minat" class="card-image">
-                        <h3>🎯 Kenali Minat & Bakat</h3>
-                        <p>Temukan minat dan bakat terpendam kamu melalui tes psikologi dan konsultasi mendalam dengan ahli.</p>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Prospek Karir" class="card-image">
-                        <h3>🚀 Prospek Karir Cerah</h3>
-                        <p>Dapatkan info lengkap tentang prospek kerja, gaji, dan peluang karir dari setiap jurusan.</p>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2084&q=80" alt="Pilihan Tepat" class="card-image">
-                        <h3>💡 Pilihan yang Tepat</h3>
-                        <p>Hindari salah pilih jurusan dengan bimbingan dari konselor berpengalaman dan data akurat.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Layanan Section -->
-            <section id="layanan" class="section fade-in">
-                <h2>Layanan Konsultasi Jurusan</h2>
-                <p>Dapatkan bimbingan lengkap untuk memilih jurusan kuliah yang tepat sesuai dengan potensi dan minat kamu.</p>
-                
-                <div class="grid">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tes Minat Bakat" class="card-image">
-                        <h3>🔍 Tes Minat & Bakat</h3>
-                        <ul class="list">
-                            <li>Tes kepribadian Holland (RIASEC)</li>
-                            <li>Tes kecerdasan majemuk</li>
-                            <li>Analisis minat & preferensi</li>
-                            <li>Rekomendasi jurusan yang cocok</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Konsultasi Personal" class="card-image">
-                        <h3>💬 Konsultasi Personal</h3>
-                        <ul class="list">
-                            <li>Sesi 1-on-1 dengan konselor</li>
-                            <li>Diskusi mendalam tentang passion</li>
-                            <li>Analisis kelebihan & kekurangan</li>
-                            <li>Roadmap pendidikan yang jelas</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Info Jurusan" class="card-image">
-                        <h3>📚 Database Jurusan</h3>
-                        <ul class="list">
-                            <li>Info lengkap 500+ jurusan</li>
-                            <li>Mata kuliah & prospek kerja</li>
-                            <li>Universitas terbaik per jurusan</li>
-                            <li>Tips lolos SNBP & SNBT</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Program Section -->
-            <section class="section fade-in">
-                <h2>Paket Konsultasi</h2>
-                <div class="grid">
-                    <div class="card-simple">
-                        <h3>📱 Konsultasi Online</h3>
-                        <p>Sesi konsultasi via Zoom/Google Meet untuk membahas pilihan jurusan yang tepat untukmu. Termasuk tes minat bakat dan rekomendasi.</p>
-                        <a href="https://wa.me/6288802503036?text=Halo,%20saya%20tertarik%20dengan%20paket%20Konsultasi%20Online%20untuk%20pilih%20jurusan%20kuliah.%20Mohon%20info%20lebih%20lanjut." class="btn" target="_blank">Daftar Sekarang</a>
-                    </div>
-                    <div class="card-simple">
-                        <h3>🎥 Live Instagram</h3>
-                        <p>Sesi Q&A live di Instagram setiap minggu membahas tips pilih jurusan, info PTN/PTS, dan sharing dari kakak tingkat.</p>
-                        <a href="#kontak" class="btn">Follow IG Kami</a>
-                    </div>
-                    <div class="card-simple">
-                        <h3>🏫 Workshop Sekolah</h3>
-                        <p>Program kunjungan ke sekolah untuk memberikan workshop tentang pemilihan jurusan untuk siswa kelas 12.</p>
-                        <a href="#kontak" class="btn">Hubungi Kami</a>
-                    </div>
-                </div>
-            </section>
+        <!-- CTA Section -->
+        <div id="kontak" class="bg-primary text-white p-12 text-center">
+            <h3 class="text-3xl md:text-4xl font-light mb-4">Siap Menemukan Karirmu?</h3>
+            <p class="text-xl mb-8 opacity-90">Bergabunglah dengan ribuan siswa lain yang sudah menemukan arah karir mereka. Konsultasi gratis tersedia!</p>
+            <a href="https://wa.me/6288802503036?text=Halo,%20saya%20tertarik%20dengan%20layanan%20karir%20untuk%20siswa%20SMA.%20Bisa%20minta%20info%20lebih%20lanjut?" 
+               target="_blank" 
+               class="inline-block bg-white text-primary px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all transform hover:-translate-y-1">
+                Konsultasi Sekarang
+            </a>
         </div>
-    </main>
-
-    <!-- Contact Section -->
-    <section id="kontak" class="contact">
-        <div class="container">
-            <h2>Mulai Konsultasi Sekarang!</h2>
-            <p>Jangan biarkan kebingungan menghalangi masa depan cerahmu. Hubungi kami untuk konsultasi gratis!</p>
-            
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Nama Lengkap" required>
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <input type="text" placeholder="Asal Sekolah & Kelas">
-                <textarea placeholder="Ceritakan tentang minat dan kebingunganmu dalam memilih jurusan..." required></textarea>
-                <button type="submit" class="btn">Kirim Pesan</button>
-            </form>
-        </div>
-    </section>
+    </article>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Layanan Bimbingan Karir - Konsultasi Pemilihan Jurusan Kuliah. Wujudkan impianmu bersama kami! 🎓</p>
+    <footer class="bg-gray-800 text-white text-center py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>&copy; 2025 KarirKu - Layanan Karir Siswa SMA. Wujudkan masa depan cerahmu! 🌟</p>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button x-show="showBackToTop" 
+            x-transition
+            @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+            class="fixed bottom-6 right-6 bg-primary hover:bg-primary-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all transform hover:-translate-y-1 z-50">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
     <script>
-        // Smooth scrolling for navigation links
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in', 'active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.prose, .grid > div');
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -607,64 +450,6 @@
                         block: 'start'
                     });
                 }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navMenu = document.querySelector('.nav-menu');
-
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Terima kasih! Pesan kamu sudah terkirim. Tim kami akan segera menghubungi untuk konsultasi gratis! 🎓');
-            this.reset();
-        });
-
-        // Active navbar on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.style.opacity = link.getAttribute('href').slice(1) === current ? '1' : '0.8';
             });
         });
     </script>
