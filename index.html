@@ -1,11 +1,507 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layanan Bimbingan Karir</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Karir Siswa - Membuka Akses Menuju Masa Depan Cerah</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #87CEEB;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: #87CEEB;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #4682B4;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #87CEEB;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        .list li:before {
+            content: "✓";
+            color: #87CEEB;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #87CEEB;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .contact p {
+            margin-bottom: 2rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  Layanan Bimbingan Karir - Coming Soon
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">KarirKu</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1>Membuka Akses Siswa Menuju Masa Depan Cerah</h1>
+            <p>Layanan konseling karir profesional untuk membantu siswa menemukan potensi diri dan merencanakan masa depan yang gemilang</p>
+            <a href="#layanan" class="btn">Mulai Konsultasi</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div class="container">
+            <!-- Tentang Section -->
+            <section id="tentang" class="section fade-in">
+                <h2>Tentang Layanan Karir</h2>
+                <p>Pendidikan tidak hanya bertujuan untuk mentransfer ilmu pengetahuan, tetapi juga untuk mempersiapkan siswa menghadapi dunia kerja dan kehidupan masa depan. Layanan karir di sekolah menjadi solusi strategis untuk menjembatani dunia pendidikan dengan dunia kerja.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>🎯 Visi Kami</h3>
+                        <p>Menjadi jembatan yang menghubungkan potensi siswa dengan peluang masa depan yang cerah dan berkelanjutan.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🚀 Misi Kami</h3>
+                        <p>Memberikan bimbingan karir yang komprehensif dan inklusif untuk membantu setiap siswa menemukan jalan menuju kesuksesan.</p>
+                    </div>
+                    <div class="card">
+                        <h3>💡 Nilai Kami</h3>
+                        <p>Integritas, inklusivitas, dan inovasi dalam setiap layanan yang kami berikan untuk masa depan generasi penerus.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Layanan Section -->
+            <section id="layanan" class="section fade-in">
+                <h2>Layanan Kami</h2>
+                <p>Kami menyediakan berbagai layanan konseling karir yang dirancang khusus untuk membantu siswa dalam perjalanan menuju masa depan yang cerah.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>🔍 Identifikasi Potensi Diri</h3>
+                        <ul class="list">
+                            <li>Tes minat dan bakat</li>
+                            <li>Analisis kepribadian</li>
+                            <li>Evaluasi keterampilan</li>
+                            <li>Konseling individual</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>📚 Bimbingan Akademik</h3>
+                        <ul class="list">
+                            <li>Pemilihan jurusan kuliah</li>
+                            <li>Informasi beasiswa</li>
+                            <li>Persiapan ujian masuk</li>
+                            <li>Strategi belajar efektif</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>💼 Persiapan Karir</h3>
+                        <ul class="list">
+                            <li>Workshop keterampilan kerja</li>
+                            <li>Simulasi wawancara</li>
+                            <li>Penyusunan CV & portfolio</li>
+                            <li>Networking & magang</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Section -->
+            <section class="section fade-in">
+                <h2>Program Unggulan</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>📱 Konseling Online</h3>
+                        <p>Sesi konseling melalui platform digital yang memudahkan akses dari mana saja dan kapan saja.</p>
+                        <a href="#kontak" class="btn">Daftar Sekarang</a>
+                    </div>
+                    <div class="card">
+                        <h3>🎥 Live Instagram</h3>
+                        <p>Diskusi interaktif dan Q&A session melalui live streaming Instagram untuk edukasi karir.</p>
+                        <a href="#kontak" class="btn">Follow IG Kami</a>
+                    </div>
+                    <div class="card">
+                        <h3>🏢 Kunjungan Industri</h3>
+                        <p>Program kunjungan ke berbagai perusahaan untuk memberikan gambaran nyata dunia kerja.</p>
+                        <a href="#kontak" class="btn">Info Lebih Lanjut</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="contact">
+        <div class="container">
+            <h2>Hubungi Kami</h2>
+            <p>Siap memulai perjalanan menuju masa depan cerah? Hubungi kami sekarang!</p>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Nama Lengkap" required>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <input type="text" placeholder="Sekolah/Institusi">
+                <textarea placeholder="Pesan atau Pertanyaan Anda" required></textarea>
+                <button type="submit" class="btn">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 KarirKu - Layanan Karir Siswa. Dibuat dengan ❤️ untuk masa depan yang cerah.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+            this.reset();
+        });
+
+        // Active navbar on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.opacity = link.getAttribute('href').slice(1) === current ? '1' : '0.8';
+            });
+        });
+    </script>
 </body>
 </html>
