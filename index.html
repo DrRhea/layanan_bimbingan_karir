@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Karir Siswa - Membuka Akses Menuju Masa Depan Cerah</title>
+    <title>Konsultasi Jurusan Kuliah - Temukan Jurusan Impianmu</title>
     <style>
         * {
             margin: 0;
@@ -184,20 +184,28 @@
             padding-bottom: 2rem;
         }
 
-        .card:hover {
+        .card:hover,
+        .card-simple:hover {
             transform: translateY(-5px);
         }
 
-        .card h3 {
+        .card h3,
+        .card-simple h3 {
             color: #87CEEB;
             margin-bottom: 1rem;
             font-size: 1.3rem;
             padding-top: 1rem;
         }
 
-        .card p {
+        .card-simple h3 {
+            padding-top: 0;
+        }
+
+        .card p,
+        .card-simple p {
             color: #666;
             font-size: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .list {
@@ -218,23 +226,61 @@
             margin-right: 10px;
         }
 
-        /* Contact Section */
-        .contact {
+        .card-simple {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        /* Stats Section */
+        .stats {
             background: #87CEEB;
             color: white;
             padding: 60px 0;
             text-align: center;
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #f8f9fa;
+            color: #333;
+            padding: 60px 0;
+            text-align: center;
+        }
+
         .contact h2 {
             margin-bottom: 1rem;
-            color: white;
+            color: #333;
         }
 
         .contact p {
             margin-bottom: 2rem;
-            color: white;
-            opacity: 0.9;
+            color: #666;
         }
 
         .contact-form {
@@ -253,7 +299,7 @@
         .contact-form input,
         .contact-form textarea {
             padding: 12px;
-            border: none;
+            border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
         }
@@ -275,6 +321,23 @@
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #87CEEB;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+                text-align: center;
             }
 
             .mobile-menu {
@@ -300,6 +363,54 @@
             .container {
                 padding: 0 1rem;
             }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .content {
+                padding: 40px 0;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .card,
+            .card-simple {
+                margin: 0 0.5rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Smooth scrolling */
@@ -318,46 +429,13 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Program Section */
-        .program-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .program-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .program-btn {
-            background: #87CEEB;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .program-btn:hover {
-            background: #4682B4;
-            transform: translateY(-2px);
-        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">KarirKu</div>
+            <div class="logo">JurusanKu</div>
             <ul class="nav-menu">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#tentang">Tentang</a></li>
@@ -375,9 +453,30 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
-            <h1>Membuka Akses Siswa Menuju Masa Depan Cerah</h1>
-            <p>Layanan konseling karir profesional untuk membantu siswa menemukan potensi diri dan merencanakan masa depan yang gemilang</p>
-            <a href="#layanan" class="btn">Mulai Konsultasi</a>
+            <h1>Bingung Pilih Jurusan Kuliah?</h1>
+            <p>Konsultasi dengan ahli untuk menemukan jurusan yang tepat sesuai minat, bakat, dan passion kamu!</p>
+            <a href="#layanan" class="btn">Konsultasi Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2>Mengapa Pilih Jurusan Itu Penting?</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-text">Mahasiswa salah pilih jurusan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-text">Jurusan kuliah di Indonesia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-text">Siswa bingung pilih jurusan</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -386,42 +485,62 @@
         <div class="container">
             <!-- Tentang Section -->
             <section id="tentang" class="section fade-in">
-                <h2>Tentang Layanan Karir</h2>
-                <p>Pendidikan tidak hanya bertujuan untuk mentransfer ilmu pengetahuan, tetapi juga untuk mempersiapkan siswa menghadapi dunia kerja dan kehidupan masa depan. Layanan karir di sekolah menjadi solusi strategis untuk menjembatani dunia pendidikan dengan dunia kerja.</p>
+                <h2>Kenapa Harus Konsultasi Jurusan?</h2>
+                <p>Memilih jurusan kuliah adalah keputusan penting yang akan menentukan masa depan kamu. Jangan sampai salah pilih dan menyesal di kemudian hari!</p>
                 
                 <div class="grid">
                     <div class="card">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Visi Kami" class="card-image">
-                        <h3>🎯 Visi Kami</h3>
-                        <p>Menjadi jembatan yang menghubungkan potensi siswa dengan peluang masa depan yang cerah dan berkelanjutan.</p>
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kenali Minat" class="card-image">
+                        <h3>🎯 Kenali Minat & Bakat</h3>
+                        <p>Temukan minat dan bakat terpendam kamu melalui tes psikologi dan konsultasi mendalam dengan ahli.</p>
                     </div>
                     <div class="card">
-                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Misi Kami" class="card-image">
-                        <h3>🚀 Misi Kami</h3>
-                        <p>Memberikan bimbingan karir yang komprehensif dan inklusif untuk membantu setiap siswa menemukan jalan menuju kesuksesan.</p>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Prospek Karir" class="card-image">
+                        <h3>🚀 Prospek Karir Cerah</h3>
+                        <p>Dapatkan info lengkap tentang prospek kerja, gaji, dan peluang karir dari setiap jurusan.</p>
                     </div>
                     <div class="card">
-                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Nilai Kami" class="card-image">
-                        <h3>💡 Nilai Kami</h3>
-                        <p>Integritas, inklusivitas, dan inovasi dalam setiap layanan yang kami berikan untuk masa depan generasi penerus.</p>
+                        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2084&q=80" alt="Pilihan Tepat" class="card-image">
+                        <h3>💡 Pilihan yang Tepat</h3>
+                        <p>Hindari salah pilih jurusan dengan bimbingan dari konselor berpengalaman dan data akurat.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Layanan Section -->
             <section id="layanan" class="section fade-in">
-                <h2>Layanan Kami</h2>
-                <p>Kami menyediakan berbagai layanan konseling karir yang dirancang khusus untuk membantu siswa dalam perjalanan menuju masa depan yang cerah.</p>
+                <h2>Layanan Konsultasi Jurusan</h2>
+                <p>Dapatkan bimbingan lengkap untuk memilih jurusan kuliah yang tepat sesuai dengan potensi dan minat kamu.</p>
                 
                 <div class="grid">
                     <div class="card">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Identifikasi Potensi" class="card-image">
-                        <h3>🔍 Identifikasi Potensi Diri</h3>
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tes Minat Bakat" class="card-image">
+                        <h3>🔍 Tes Minat & Bakat</h3>
                         <ul class="list">
-                            <li>Tes minat dan bakat</li>
-                            <li>Analisis kepribadian</li>
-                            <li>Evaluasi keterampilan</li>
-                            <li>Konseling individual</li>
+                            <li>Tes kepribadian Holland (RIASEC)</li>
+                            <li>Tes kecerdasan majemuk</li>
+                            <li>Analisis minat & preferensi</li>
+                            <li>Rekomendasi jurusan yang cocok</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Konsultasi Personal" class="card-image">
+                        <h3>💬 Konsultasi Personal</h3>
+                        <ul class="list">
+                            <li>Sesi 1-on-1 dengan konselor</li>
+                            <li>Diskusi mendalam tentang passion</li>
+                            <li>Analisis kelebihan & kekurangan</li>
+                            <li>Roadmap pendidikan yang jelas</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Info Jurusan" class="card-image">
+                        <h3>📚 Database Jurusan</h3>
+                        <ul class="list">
+                            <li>Info lengkap 500+ jurusan</li>
+                            <li>Mata kuliah & prospek kerja</li>
+                            <li>Universitas terbaik per jurusan</li>
+                            <li>Tips lolos SNBP & SNBT</li>
                         </ul>
                     </div>
                 </div>
@@ -429,13 +548,22 @@
 
             <!-- Program Section -->
             <section class="section fade-in">
-                <h2>Program Unggulan</h2>
+                <h2>Paket Konsultasi</h2>
                 <div class="grid">
-                    <div class="card program-card">
-                        <div class="program-icon">📱</div>
-                        <h3>Konseling Online</h3>
-                        <p>Sesi konseling melalui platform digital yang memudahkan akses dari mana saja dan kapan saja.</p>
-                        <a href="https://wa.me/6288802503036?text=Halo,%20saya%20tertarik%20dengan%20program%20Konseling%20Online.%20Mohon%20informasi%20lebih%20lanjut." class="btn program-btn" target="_blank">Daftar Sekarang</a>
+                    <div class="card-simple">
+                        <h3>📱 Konsultasi Online</h3>
+                        <p>Sesi konsultasi via Zoom/Google Meet untuk membahas pilihan jurusan yang tepat untukmu. Termasuk tes minat bakat dan rekomendasi.</p>
+                        <a href="https://wa.me/6288802503036?text=Halo,%20saya%20tertarik%20dengan%20paket%20Konsultasi%20Online%20untuk%20pilih%20jurusan%20kuliah.%20Mohon%20info%20lebih%20lanjut." class="btn" target="_blank">Daftar Sekarang</a>
+                    </div>
+                    <div class="card-simple">
+                        <h3>🎥 Live Instagram</h3>
+                        <p>Sesi Q&A live di Instagram setiap minggu membahas tips pilih jurusan, info PTN/PTS, dan sharing dari kakak tingkat.</p>
+                        <a href="#kontak" class="btn">Follow IG Kami</a>
+                    </div>
+                    <div class="card-simple">
+                        <h3>🏫 Workshop Sekolah</h3>
+                        <p>Program kunjungan ke sekolah untuk memberikan workshop tentang pemilihan jurusan untuk siswa kelas 12.</p>
+                        <a href="#kontak" class="btn">Hubungi Kami</a>
                     </div>
                 </div>
             </section>
@@ -445,16 +573,16 @@
     <!-- Contact Section -->
     <section id="kontak" class="contact">
         <div class="container">
-            <h2>Hubungi Kami</h2>
-            <p>Siap memulai perjalanan menuju masa depan cerah? Hubungi kami sekarang!</p>
+            <h2>Mulai Konsultasi Sekarang!</h2>
+            <p>Jangan biarkan kebingungan menghalangi masa depan cerahmu. Hubungi kami untuk konsultasi gratis!</p>
             
             <form class="contact-form">
                 <div class="form-group">
                     <input type="text" placeholder="Nama Lengkap" required>
                     <input type="email" placeholder="Email" required>
                 </div>
-                <input type="text" placeholder="Sekolah/Institusi">
-                <textarea placeholder="Pesan atau Pertanyaan Anda" required></textarea>
+                <input type="text" placeholder="Asal Sekolah & Kelas">
+                <textarea placeholder="Ceritakan tentang minat dan kebingunganmu dalam memilih jurusan..." required></textarea>
                 <button type="submit" class="btn">Kirim Pesan</button>
             </form>
         </div>
@@ -463,7 +591,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 KarirKu - Layanan Karir Siswa. Dibuat dengan ❤️ untuk masa depan yang cerah.</p>
+            <p>&copy; 2025 JurusanKu - Konsultasi Pemilihan Jurusan Kuliah. Wujudkan impianmu bersama kami! 🎓</p>
         </div>
     </footer>
 
@@ -505,13 +633,20 @@
         const navMenu = document.querySelector('.nav-menu');
 
         mobileMenu.addEventListener('click', () => {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
         });
 
         // Form submission
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+            alert('Terima kasih! Pesan kamu sudah terkirim. Tim kami akan segera menghubungi untuk konsultasi gratis! 🎓');
             this.reset();
         });
 
